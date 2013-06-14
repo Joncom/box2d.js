@@ -1,5 +1,6 @@
 #include <emscripten/bind.h>
 #include "Box2D/Collision/Shapes/b2Shape.h"
+#include "Box2D/Collision/b2Collision.h"
 
 using namespace emscripten;
 
@@ -17,6 +18,18 @@ void b2MassDataSetCenter(b2MassData& s, b2Vec2 center) { s.center = center; }
 float32 b2MassDataGetI(const b2MassData& s) { return s.I; }
 void b2MassDataSetI(b2MassData& s, float32 I) { s.I = I; }
 
+// b2Manifold
+b2ManifoldPoint b2ManifoldGetPoints(const b2Manifold& s) { return s.points; }
+void b2ManifoldSetPoints(b2Manifold& s, b2ManifoldPoint points) { s.points = points; }
+b2Vec2 b2ManifoldGetLocalNormal(const b2Manifold& s) { return s.localNormal; }
+void b2ManifoldSetLocalNormal(b2Manifold& s, b2Vec2 localNormal) { s.localNormal = localNormal; }
+b2Vec2 b2ManifoldGetLocalPoint(const b2Manifold& s) { return s.localPoint; }
+void b2ManifoldSetLocalPoint(b2Manifold& s, b2Vec2 localPoint) { s.localPoint = localPoint; }
+Type b2ManifoldGetType(const b2Manifold& s) { return s.type; }
+void b2ManifoldSetType(b2Manifold& s, Type type) { s.type = type; }
+int32 b2ManifoldGetPointCount(const b2Manifold& s) { return s.pointCount; }
+void b2ManifoldSetPointCount(b2Manifold& s, int32 pointCount) { s.pointCount = pointCount; }
+
 EMSCRIPTEN_BINDINGS(box2d_embindings) {
 	class_<b2Vec2>("b2Vec2")
 		.constructor<>()
@@ -28,5 +41,13 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 		.property("mass", &b2MassDataGetMass, &b2MassDataSetMass)
 		.property("center", &b2MassDataGetCenter, &b2MassDataSetCenter)
 		.property("I", &b2MassDataGetI, &b2MassDataSetI)
+		;
+	class_<b2Manifold>("b2Manifold")
+		.constructor<>()
+		.property("points", &b2ManifoldGetPoints, &b2ManifoldSetPoints)
+		.property("localNormal", &b2ManifoldGetLocalNormal, &b2ManifoldSetLocalNormal)
+		.property("localPoint", &b2ManifoldGetLocalPoint, &b2ManifoldSetLocalPoint)
+		.property("type", &b2ManifoldGetType, &b2ManifoldSetType)
+		.property("pointCount", &b2ManifoldGetPointCount, &b2ManifoldSetPointCount)
 		;
 }
