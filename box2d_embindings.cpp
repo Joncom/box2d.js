@@ -41,17 +41,25 @@ int32 b2ManifoldGetPointCount(const b2Manifold& s) { return s.pointCount; }
 void b2ManifoldSetPointCount(b2Manifold& s, int32 pointCount) { s.pointCount = pointCount; }
 
 EMSCRIPTEN_BINDINGS(box2d_embindings) {
+
+	// b2Math.h
 	class_<b2Vec2>("b2Vec2")
 		.constructor<>()
 		.property("x", &b2Vec2GetX, &b2Vec2SetX)
 		.property("y", &b2Vec2GetY, &b2Vec2SetY)
 		;
+
+
+	// b2Shape.h
 	class_<b2MassData>("b2MassData")
 		.constructor<>()
 		.property("mass", &b2MassDataGetMass, &b2MassDataSetMass)
 		.property("center", &b2MassDataGetCenter, &b2MassDataSetCenter)
 		.property("I", &b2MassDataGetI, &b2MassDataSetI)
 		;
+
+
+	// b2Collision.h
 	class_<b2ManifoldPoint>("b2ManifoldPoint")
 		.constructor<>()
 		.property("localPoint", &b2ManifoldPointGetLocalPoint, &b2ManifoldPointSetLocalPoint)
@@ -67,4 +75,5 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 		.property("type", &b2ManifoldGetType, &b2ManifoldSetType)
 		.property("pointCount", &b2ManifoldGetPointCount, &b2ManifoldSetPointCount)
 		;
+
 }
