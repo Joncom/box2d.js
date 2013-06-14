@@ -18,6 +18,16 @@ void b2MassDataSetCenter(b2MassData& s, b2Vec2 center) { s.center = center; }
 float32 b2MassDataGetI(const b2MassData& s) { return s.I; }
 void b2MassDataSetI(b2MassData& s, float32 I) { s.I = I; }
 
+// b2ManifoldPoint
+b2Vec2 b2MassDataGetLocalPoint(const b2MassData& s) { return s.localPoint; }
+void b2MassDataSetLocalPoint(b2MassData& s, b2Vec2 localPoint) { s.localPoint = localPoint; }
+float32 b2MassDataGetNormalImpulse(const b2MassData& s) { return s.normalImpulse; }
+void b2MassDataSetNormalImpulse(b2MassData& s, float32 normalImpulse) { s.normalImpulse = normalImpulse; }
+float32 b2MassDataGetTangentImpulse(const b2MassData& s) { return s.tangentImpulse; }
+void b2MassDataSetTangentImpulse(b2MassData& s, float32 tangentImpulse) { s.tangentImpulse = tangentImpulse; }
+b2ContactID b2MassDataGetID(const b2MassData& s) { return s.id; }
+void b2MassDataSetID(b2MassData& s, b2ContactID id) { s.id = id; }
+
 // b2Manifold
 b2ManifoldPoint b2ManifoldGetPoints(const b2Manifold& s) { return s.points; }
 void b2ManifoldSetPoints(b2Manifold& s, b2ManifoldPoint points) { s.points = points; }
@@ -41,6 +51,13 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 		.property("mass", &b2MassDataGetMass, &b2MassDataSetMass)
 		.property("center", &b2MassDataGetCenter, &b2MassDataSetCenter)
 		.property("I", &b2MassDataGetI, &b2MassDataSetI)
+		;
+	class_<b2ManifoldPoint>("b2ManifoldPoint")
+		.constructor<>()
+		.property("localPoint", &b2ManifoldPointGetLocalPoint, &b2ManifoldPointSetLocalPoint)
+		.property("normalImpulse", &b2ManifoldPointGetNormalImpulse, &b2ManifoldPointSetNormalImpulse)
+		.property("tangentImpulse", &b2ManifoldPointGetTangentImpulse, &b2ManifoldPointSetTangentImpulse)
+		.property("id", &b2ManifoldPointGetID, &b2ManifoldPointGetID)
 		;
 	class_<b2Manifold>("b2Manifold")
 		.constructor<>()
