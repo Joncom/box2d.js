@@ -40,8 +40,8 @@ b2Vec2 b2ManifoldGetLocalNormal(const b2Manifold& s) { return s.localNormal; }
 void b2ManifoldSetLocalNormal(b2Manifold& s, b2Vec2 localNormal) { s.localNormal = localNormal; }
 b2Vec2 b2ManifoldGetLocalPoint(const b2Manifold& s) { return s.localPoint; }
 void b2ManifoldSetLocalPoint(b2Manifold& s, b2Vec2 localPoint) { s.localPoint = localPoint; }
-Type b2ManifoldGetType(const b2Manifold& s) { return s.type; }
-void b2ManifoldSetType(b2Manifold& s, Type type) { s.type = type; }
+b2Manifold::Type b2ManifoldGetType(const b2Manifold& s) { return s.type; }
+void b2ManifoldSetType(b2Manifold& s, b2Manifold::Type type) { s.type = type; }
 int32 b2ManifoldGetPointCount(const b2Manifold& s) { return s.pointCount; }
 void b2ManifoldSetPointCount(b2Manifold& s, int32 pointCount) { s.pointCount = pointCount; }
 
