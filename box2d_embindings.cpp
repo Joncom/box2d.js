@@ -18,6 +18,16 @@ void b2MassDataSetCenter(b2MassData& s, b2Vec2 center) { s.center = center; }
 float32 b2MassDataGetI(const b2MassData& s) { return s.I; }
 void b2MassDataSetI(b2MassData& s, float32 I) { s.I = I; }
 
+// b2ContactFeature
+uint8 b2ContactFeatureGetIndexA(const b2ContactFeature& s) { return s.indexA; }
+void b2ContactFeatureSetIndexA(b2ContactFeature& s, uint8 indexA) { s.indexA = indexA; }
+uint8 b2ContactFeatureGetIndexB(const b2ContactFeature& s) { return s.indexB; }
+void b2ContactFeatureSetIndexB(b2ContactFeature& s, uint8 indexB) { s.indexB = indexB; }
+uint8 b2ContactFeatureGetTypeA(const b2ContactFeature& s) { return s.typeA; }
+void b2ContactFeatureSetTypeA(b2ContactFeature& s, uint8 typeA) { s.typeA = typeA; }
+uint8 b2ContactFeatureGetTypeB(const b2ContactFeature& s) { return s.typeB; }
+void b2ContactFeatureSetTypeB(b2ContactFeature& s, uint8 typeB) { s.typeB = typeB; }
+
 // b2ContactID
 b2ContactFeature b2ContactIDGetContactFeature(const b2ContactID& s) { return s.cf; }
 void b2ContactIDSetContactFeature(b2ContactID& s, b2ContactFeature cf) { s.cf = cf; }
@@ -71,6 +81,13 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 
 
 	// b2Collision.h
+	class_<b2ContactFeature>("b2ContactFeature")
+		.constructor<>()
+		.property("indexA", &b2ContactFeatureGetIndexA, &b2ContactFeatureSetIndexA)
+		.property("indexB", &b2ContactFeatureGetIndexB, &b2ContactFeatureSetIndexB)
+		.property("typeA", &b2ContactFeatureGetTypeA, &b2ContactFeatureSetTypeA)
+		.property("typeB", &b2ContactFeatureGetTypeB, &b2ContactFeatureSetTypeB)
+		;
 	class_<b2ContactID>("b2ContactID")
 		.constructor<>()
 		.property("cf", &b2ContactIDGetContactFeature, &b2ContactIDSetContactFeature)
