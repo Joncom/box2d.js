@@ -29,8 +29,13 @@ b2ContactID b2MassDataGetID(const b2ManifoldPoint& s) { return s.id; }
 void b2MassDataSetID(b2ManifoldPoint& s, b2ContactID id) { s.id = id; }
 
 // b2Manifold
-b2ManifoldPoint b2ManifoldGetPoints(const b2Manifold& s) { return s.points; }
-void b2ManifoldSetPoints(b2Manifold& s, b2ManifoldPoint points) { s.points = points; }
+std::vector<b2ManifoldPoint> b2ManifoldGetPoints(const b2Manifold& s) {
+	std::vector<b2ManifoldPoint> vector(std::begin(s.points), std::end(s.points));
+	return vector;
+}
+void b2ManifoldSetPoints(b2Manifold& s, std::vector<b2ManifoldPoint> vector) {
+	std::copy(vector.begin(), vector.end(), s.points);
+}
 b2Vec2 b2ManifoldGetLocalNormal(const b2Manifold& s) { return s.localNormal; }
 void b2ManifoldSetLocalNormal(b2Manifold& s, b2Vec2 localNormal) { s.localNormal = localNormal; }
 b2Vec2 b2ManifoldGetLocalPoint(const b2Manifold& s) { return s.localPoint; }
@@ -60,6 +65,7 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 
 
 	// b2Collision.h
+	register_vector<std::vector<b2ManifoldPoint>>("b2ManifoldPoint");
 	class_<b2ManifoldPoint>("b2ManifoldPoint")
 		.constructor<>()
 		.property("localPoint", &b2ManifoldPointGetLocalPoint, &b2ManifoldPointSetLocalPoint)
