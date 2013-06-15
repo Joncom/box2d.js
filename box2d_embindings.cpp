@@ -19,14 +19,14 @@ float32 b2MassDataGetI(const b2MassData& s) { return s.I; }
 void b2MassDataSetI(b2MassData& s, float32 I) { s.I = I; }
 
 // b2ManifoldPoint
-b2Vec2 b2MassDataGetLocalPoint(const b2ManifoldPoint& s) { return s.localPoint; }
-void b2MassDataSetLocalPoint(b2ManifoldPoint& s, b2Vec2 localPoint) { s.localPoint = localPoint; }
-float32 b2MassDataGetNormalImpulse(const b2ManifoldPoint& s) { return s.normalImpulse; }
-void b2MassDataSetNormalImpulse(b2ManifoldPoint& s, float32 normalImpulse) { s.normalImpulse = normalImpulse; }
-float32 b2MassDataGetTangentImpulse(const b2ManifoldPoint& s) { return s.tangentImpulse; }
-void b2MassDataSetTangentImpulse(b2ManifoldPoint& s, float32 tangentImpulse) { s.tangentImpulse = tangentImpulse; }
-b2ContactID b2MassDataGetID(const b2ManifoldPoint& s) { return s.id; }
-void b2MassDataSetID(b2ManifoldPoint& s, b2ContactID id) { s.id = id; }
+b2Vec2 b2ManifoldPointGetLocalPoint(const b2ManifoldPoint& s) { return s.localPoint; }
+void b2ManifoldPointSetLocalPoint(b2ManifoldPoint& s, b2Vec2 localPoint) { s.localPoint = localPoint; }
+float32 b2ManifoldPointGetNormalImpulse(const b2ManifoldPoint& s) { return s.normalImpulse; }
+void b2ManifoldPointSetNormalImpulse(b2ManifoldPoint& s, float32 normalImpulse) { s.normalImpulse = normalImpulse; }
+float32 b2ManifoldPointGetTangentImpulse(const b2ManifoldPoint& s) { return s.tangentImpulse; }
+void b2ManifoldPointSetTangentImpulse(b2ManifoldPoint& s, float32 tangentImpulse) { s.tangentImpulse = tangentImpulse; }
+b2ContactID b2ManifoldPointGetID(const b2ManifoldPoint& s) { return s.id; }
+void b2ManifoldPointSetID(b2ManifoldPoint& s, b2ContactID id) { s.id = id; }
 
 // b2Manifold
 std::vector<b2ManifoldPoint> b2ManifoldGetPoints(const b2Manifold& s) {
