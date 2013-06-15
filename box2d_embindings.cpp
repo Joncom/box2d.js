@@ -18,6 +18,12 @@ void b2MassDataSetCenter(b2MassData& s, b2Vec2 center) { s.center = center; }
 float32 b2MassDataGetI(const b2MassData& s) { return s.I; }
 void b2MassDataSetI(b2MassData& s, float32 I) { s.I = I; }
 
+// b2ContactID
+b2ContactFeature b2ContactIDGetContactFeature(const b2ContactID& s) { return s.cf; }
+void b2ContactIDSetContactFeature(b2ContactID& s, b2ContactFeature cf) { s.cf = cf; }
+uint32 b2ContactIDGetKey(const b2ContactID& s) { return s.key; }
+void b2ContactIDSetKey(b2ContactID& s, uint32 key) { s.key = key; }
+
 // b2ManifoldPoint
 b2Vec2 b2ManifoldPointGetLocalPoint(const b2ManifoldPoint& s) { return s.localPoint; }
 void b2ManifoldPointSetLocalPoint(b2ManifoldPoint& s, b2Vec2 localPoint) { s.localPoint = localPoint; }
@@ -65,6 +71,11 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 
 
 	// b2Collision.h
+	class_<b2ContactID>("b2ContactID")
+		.constructor<>()
+		.property("cf", &b2ContactIDGetContactFeature, &b2ContactIDSetContactFeature)
+		.property("key", &b2ContactIDGetKey, &b2ContactIDSetKey)
+		;
 	//register_vector<std::vector<b2ManifoldPoint>>("b2ManifoldPoint");
 	class_<b2ManifoldPoint>("b2ManifoldPoint")
 		.constructor<>()
