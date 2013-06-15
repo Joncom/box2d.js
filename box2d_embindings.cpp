@@ -31,8 +31,8 @@ float32 b2ManifoldPointGetNormalImpulse(const b2ManifoldPoint& s) { return s.nor
 void b2ManifoldPointSetNormalImpulse(b2ManifoldPoint& s, float32 normalImpulse) { s.normalImpulse = normalImpulse; }
 float32 b2ManifoldPointGetTangentImpulse(const b2ManifoldPoint& s) { return s.tangentImpulse; }
 void b2ManifoldPointSetTangentImpulse(b2ManifoldPoint& s, float32 tangentImpulse) { s.tangentImpulse = tangentImpulse; }
-//b2ContactID b2ManifoldPointGetID(const b2ManifoldPoint& s) { return s.id; }
-//void b2ManifoldPointSetID(b2ManifoldPoint& s, b2ContactID id) { s.id = id; }
+b2ContactID b2ManifoldPointGetID(const b2ManifoldPoint& s) { return s.id; }
+void b2ManifoldPointSetID(b2ManifoldPoint& s, b2ContactID id) { s.id = id; }
 
 // b2Manifold
 std::vector<b2ManifoldPoint> b2ManifoldGetPoints(const b2Manifold& s) {
@@ -82,7 +82,7 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 		.property("localPoint", &b2ManifoldPointGetLocalPoint, &b2ManifoldPointSetLocalPoint)
 		.property("normalImpulse", &b2ManifoldPointGetNormalImpulse, &b2ManifoldPointSetNormalImpulse)
 		.property("tangentImpulse", &b2ManifoldPointGetTangentImpulse, &b2ManifoldPointSetTangentImpulse)
-		//.property("id", &b2ManifoldPointGetID, &b2ManifoldPointGetID)
+		.property("id", &b2ManifoldPointGetID, &b2ManifoldPointGetID)
 		;
 	class_<b2Manifold>("b2Manifold")
 		.constructor<>()
