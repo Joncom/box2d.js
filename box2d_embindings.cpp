@@ -99,7 +99,7 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 		.property("localPoint", &b2ManifoldPointGetLocalPoint, &b2ManifoldPointSetLocalPoint)
 		.property("normalImpulse", &b2ManifoldPointGetNormalImpulse, &b2ManifoldPointSetNormalImpulse)
 		.property("tangentImpulse", &b2ManifoldPointGetTangentImpulse, &b2ManifoldPointSetTangentImpulse)
-		.property("id", &b2ManifoldPointGetID, &b2ManifoldPointGetID)
+		.property("id", &b2ManifoldPointGetID, &b2ManifoldPointSetID)
 		;
 	class_<b2Manifold>("b2Manifold")
 		.constructor<>()
