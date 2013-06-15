@@ -93,7 +93,7 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 		.property("cf", &b2ContactIDGetContactFeature, &b2ContactIDSetContactFeature)
 		.property("key", &b2ContactIDGetKey, &b2ContactIDSetKey)
 		;
-	//register_vector<std::vector<b2ManifoldPoint>>("b2ManifoldPoint");
+	register_vector<b2ManifoldPoint>("b2ManifoldPointVector");
 	class_<b2ManifoldPoint>("b2ManifoldPoint")
 		.constructor<>()
 		.property("localPoint", &b2ManifoldPointGetLocalPoint, &b2ManifoldPointSetLocalPoint)
