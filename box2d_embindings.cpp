@@ -101,6 +101,11 @@ EMSCRIPTEN_BINDINGS(box2d_embindings) {
 		.property("tangentImpulse", &b2ManifoldPointGetTangentImpulse, &b2ManifoldPointSetTangentImpulse)
 		.property("id", &b2ManifoldPointGetID, &b2ManifoldPointSetID)
 		;
+	enum_<b2Manifold::Type>("b2ManifoldTypeEnum")
+        .value("e_circles", b2Manifold::Type::e_circles)
+        .value("e_faceA", b2Manifold::Type::e_faceA)
+        .value("e_faceB", b2Manifold::Type::e_faceB)
+        ;
 	class_<b2Manifold>("b2Manifold")
 		.constructor<>()
 		.property("points", &b2ManifoldGetPoints, &b2ManifoldSetPoints)
